@@ -1,0 +1,16 @@
+[package]
+name = "eay-scraper-storage-sqlite"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+eay-scraper-core.workspace = true
+rusqlite.workspace = true
+tokio.workspace = true
+async-trait.workspace = true
+tracing.workspace = true
+thiserror.workspace = true
+chrono.workspace = true
+serde_json.workspace = true

@@ -1,0 +1,27 @@
+id: "liputan6"
+name: "Liputan6"
+base_url: "https://www.liputan6.com"
+category: "general"
+country: "ID"
+rate_limit_ms: 1200
+requires_js: false
+feeds:
+  - "https://feed.liputan6.com/rss"
+  - "https://www.liputan6.com/feed/news"
+  - "https://www.liputan6.com/feed/bisnis"
+url_patterns:
+  - "https://www.liputan6.com/.*/read/.*"
+selectors:
+  title: "h1.read-page--header--title, h1"
+  content: "div.article-content-body__item-content, div.article-content-body, article"
+  author: "span.read-page--header--author__name, span.author-name"
+  published_at: "time.read-page--header--author__datetime"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "ul.read-page--tags__list li a"
+  drop_elements:
+    - "script"
+    - "style"
+    - ".baca-juga"
+    - ".ads"
+    - ".read-page--tags"

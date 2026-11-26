@@ -1,0 +1,27 @@
+id: "cnbc-indonesia"
+name: "CNBC Indonesia"
+base_url: "https://www.cnbcindonesia.com"
+category: "business"
+country: "ID"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://www.cnbcindonesia.com/market/rss"
+  - "https://www.cnbcindonesia.com/news/rss"
+  - "https://www.cnbcindonesia.com/tech/rss"
+url_patterns:
+  - "https://www.cnbcindonesia.com/.*/.*-[0-9]+-[0-9]+/.*"
+selectors:
+  title: "h1.mt-4, h1.detail_title, h1"
+  content: "div.detail_text, div.content-text, article"
+  author: "div.author, span.name, div.detail__author"
+  published_at: "div.date, span.detail__date"
+  summary: "meta[name='description']"
+  top_image: "div.detail__media img, meta[property='og:image']"
+  tags: "div.detail__tag a, div.tag-list a"
+  drop_elements:
+    - "script"
+    - "style"
+    - ".baca-juga"
+    - ".ads-container"
+    - ".detail_tag"

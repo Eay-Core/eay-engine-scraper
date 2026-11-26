@@ -1,0 +1,22 @@
+[package]
+name = "eay-scraper-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[[bin]]
+name = "eay-scraper"
+path = "src/main.rs"
+
+[dependencies]
+eay-scraper-core.workspace = true
+eay-scraper-fetcher.workspace = true
+eay-scraper-storage-sqlite.workspace = true
+eay-scraper-daemon.workspace = true
+clap.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+anyhow.workspace = true
+serde_json.workspace = true

@@ -1,0 +1,22 @@
+[package]
+name = "eay-scraper-fetcher"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+eay-scraper-core.workspace = true
+reqwest.workspace = true
+tokio.workspace = true
+async-trait.workspace = true
+tracing.workspace = true
+thiserror.workspace = true
+url.workspace = true
+rand.workspace = true
+governor.workspace = true
+nonzero_ext.workspace = true
+rss.workspace = true
+atom_syndication.workspace = true
+chrono.workspace = true
+

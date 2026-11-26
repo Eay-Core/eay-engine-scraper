@@ -1,0 +1,27 @@
+id: "bbc-news"
+name: "BBC News"
+base_url: "https://www.bbc.com"
+category: "global"
+country: "GLOBAL"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://feeds.bbci.co.uk/news/rss.xml"
+  - "https://feeds.bbci.co.uk/news/world/rss.xml"
+  - "https://feeds.bbci.co.uk/news/business/rss.xml"
+  - "https://feeds.bbci.co.uk/news/technology/rss.xml"
+url_patterns:
+  - "https://www.bbc.com/news/.*"
+selectors:
+  title: "h1#main-heading, h1"
+  content: "article, main[role='main']"
+  author: "div[data-testid='byline-new-contributor']"
+  published_at: "time"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "section[data-testid='topics-section'] a"
+  drop_elements:
+    - "script"
+    - "style"
+    - "header"
+    - "footer"
