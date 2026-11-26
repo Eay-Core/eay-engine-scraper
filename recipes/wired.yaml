@@ -1,0 +1,22 @@
+id: "wired"
+name: "Wired"
+base_url: "https://www.wired.com"
+category: "technology"
+country: "GLOBAL"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://www.wired.com/feed/rss"
+url_patterns:
+  - "https://www.wired.com/story/.*"
+selectors:
+  title: "h1[data-testid='ContentHeaderHed'], h1"
+  content: "div.body__inner-container, article"
+  author: "a[data-testid='byline-link'], span.byline"
+  published_at: "time"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "meta[name='news_keywords']"
+  drop_elements:
+    - "script"
+    - "style"

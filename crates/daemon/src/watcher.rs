@@ -67,4 +67,16 @@ impl RecipeRegistry {
         let map = self.recipes.read().await;
         map.values().cloned().collect()
     }
+
+    /// Simpan recipe baru atau modifikasi recipe ke folder dan memory
+    pub async fn add_or_update_recipe(&self, recipe: Recipe) -> Result<()> {
+        let yaml_str = recipe.to_yaml().map_err(|e| eay_scraper_core::error::ScraperError::Recipe(e.to_string()))?;
+        let filename = format!("{}.yaml", recipe.id);
+        let target_path = self.dir_path.join(filename);
+        std::fs::write(&target_path, yaml_str)?;
+
+        let mut map = self.recipes.write().await;
+        map.insert(recipe.id.clone(), recipe);
+        Ok(())
+    }
 }

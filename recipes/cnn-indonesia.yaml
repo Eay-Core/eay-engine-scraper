@@ -1,0 +1,28 @@
+id: "cnn-indonesia"
+name: "CNN Indonesia"
+base_url: "https://www.cnnindonesia.com"
+category: "general"
+country: "ID"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://www.cnnindonesia.com/nasional/rss"
+  - "https://www.cnnindonesia.com/ekonomi/rss"
+  - "https://www.cnnindonesia.com/teknologi/rss"
+  - "https://www.cnnindonesia.com/internasional/rss"
+url_patterns:
+  - "https://www.cnnindonesia.com/.*/[0-9]+-[0-9]+-[0-9]+/.*"
+selectors:
+  title: "h1.mb-2, h1.title, h1"
+  content: "div.detail-text, div.content-text, article"
+  author: "span.author, div.author, span.name"
+  published_at: "div.date, span.date"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "div.tag-list a, div.tags a"
+  drop_elements:
+    - "script"
+    - "style"
+    - ".baca-juga"
+    - ".ads-container"
+    - ".banner"

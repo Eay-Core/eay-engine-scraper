@@ -1,0 +1,22 @@
+id: "al-jazeera"
+name: "Al Jazeera English"
+base_url: "https://www.aljazeera.com"
+category: "global"
+country: "GLOBAL"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://www.aljazeera.com/xml/rss/all.xml"
+url_patterns:
+  - "https://www.aljazeera.com/news/.*"
+selectors:
+  title: "h1"
+  content: "div.wysiwyg--all-content, article"
+  author: "div.article-author a, span.author"
+  published_at: "time"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "meta[name='news_keywords']"
+  drop_elements:
+    - "script"
+    - "style"

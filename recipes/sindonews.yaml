@@ -1,0 +1,23 @@
+id: "sindonews"
+name: "SINDOnews"
+base_url: "https://www.sindonews.com"
+category: "general"
+country: "ID"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://www.sindonews.com/feed"
+url_patterns:
+  - "https://.*\\.sindonews\\.com/read/.*"
+selectors:
+  title: "h1"
+  content: "div.article-content, div.detail-desc, article"
+  author: "div.author, span.name"
+  published_at: "div.date, time"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "div.tag-detail a"
+  drop_elements:
+    - "script"
+    - "style"
+    - ".baca-juga"

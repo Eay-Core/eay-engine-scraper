@@ -1,0 +1,22 @@
+id: "the-verge"
+name: "The Verge"
+base_url: "https://www.theverge.com"
+category: "technology"
+country: "GLOBAL"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://www.theverge.com/rss/index.xml"
+url_patterns:
+  - "https://www.theverge.com/.*"
+selectors:
+  title: "h1"
+  content: "div.duet--article--article-body, article"
+  author: "span.author-name, a.author"
+  published_at: "time"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "meta[property='article:tag']"
+  drop_elements:
+    - "script"
+    - "style"

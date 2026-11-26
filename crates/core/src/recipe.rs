@@ -87,6 +87,11 @@ impl Recipe {
         serde_yaml::from_str(yaml_str)
     }
 
+    /// Serialisasi recipe ke string YAML
+    pub fn to_yaml(&self) -> Result<String, serde_yaml::Error> {
+        serde_yaml::to_string(self)
+    }
+
     /// Load recipe dari file YAML
     pub fn from_file<P: AsRef<std::path::Path>>(path: P) -> crate::error::Result<Self> {
         let content = std::fs::read_to_string(path)?;

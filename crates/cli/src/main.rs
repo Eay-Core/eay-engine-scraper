@@ -56,6 +56,27 @@ enum Commands {
     /// Tampilkan daftar semua recipe yang terdeteksi
     ListRecipes,
 
+    /// Tambahkan custom recipe baru via CLI
+    AddRecipe {
+        #[arg(short, long)]
+        id: String,
+
+        #[arg(short, long)]
+        name: String,
+
+        #[arg(short, long)]
+        base_url: String,
+
+        #[arg(short, long)]
+        feed: Vec<String>,
+
+        #[arg(short, long, default_value = "custom")]
+        category: String,
+
+        #[arg(short = 'C', long, default_value = "GLOBAL")]
+        country: String,
+    },
+
     /// Tampilkan artikel yang tersimpan di SQLite
     ListArticles {
         #[arg(short, long)]
@@ -136,6 +157,35 @@ async fn main() -> Result<()> {
             for r in recipes {
                 println!("  - [{}] {} (Base: {}, Feeds: {})", r.id, r.name, r.base_url, r.feeds.len());
             }
+        }
+
+        Commands::AddRecipe {
+            id,
+            name,
+            base_url,
+            feed,
+            category,
+            country,
+        } => {
+            let recipe = eay_scraper_core::recipe::Recipe {
+                id: id.clone(),
+                name: name.clone(),
+                base_url: base_url.clone(),
+                category: Some(category),
+                country: Some(country),
+                rate_limit_ms: 1000,
+                requires_js: false,
+                feeds: if feed.is_empty() {
+                    vec![format!("{}/rss", base_url.trim_end_matches('/'))]
+                } else {
+                    feed
+                },
+                url_patterns: vec![format!("{}/.*", base_url.trim_end_matches('/'))],
+                selectors: eay_scraper_core::recipe::RecipeSelectors::default(),
+            };
+
+            runtime.recipes().add_or_update_recipe(recipe).await?;
+            println!("✅ Successfully created and registered custom recipe [{}] ({})", id, name);
         }
 
         Commands::ListArticles { provider, limit } => {

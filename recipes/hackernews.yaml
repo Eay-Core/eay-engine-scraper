@@ -1,0 +1,22 @@
+id: "hackernews"
+name: "Hacker News"
+base_url: "https://news.ycombinator.com"
+category: "technology"
+country: "GLOBAL"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://news.ycombinator.com/rss"
+url_patterns:
+  - "https://news.ycombinator.com/item\\?id=[0-9]+"
+selectors:
+  title: "tr#pagespace + tr table tr:first-child .titleline a, title"
+  content: "table.comment-tree, tr.comment"
+  author: "a.hnuser"
+  published_at: "span.age"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: ""
+  drop_elements:
+    - "script"
+    - "style"

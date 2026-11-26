@@ -1,0 +1,22 @@
+id: "cointelegraph"
+name: "Cointelegraph"
+base_url: "https://cointelegraph.com"
+category: "crypto"
+country: "GLOBAL"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://cointelegraph.com/rss"
+url_patterns:
+  - "https://cointelegraph.com/news/.*"
+selectors:
+  title: "h1"
+  content: "div.post-content, article"
+  author: "a.post-meta__author-name, span.author"
+  published_at: "time"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "ul.tags-list a"
+  drop_elements:
+    - "script"
+    - "style"

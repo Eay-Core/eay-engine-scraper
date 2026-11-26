@@ -1,0 +1,24 @@
+id: "republika"
+name: "Republika"
+base_url: "https://www.republika.co.id"
+category: "general"
+country: "ID"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://www.republika.co.id/rss"
+url_patterns:
+  - "https://www.republika.co.id/berita/.*"
+selectors:
+  title: "h1"
+  content: "div.artikel, article, div.content"
+  author: "span.penulis, div.author"
+  published_at: "span.date, time"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "div.wrap-tag a"
+  drop_elements:
+    - "script"
+    - "style"
+    - ".baca-juga"
+    - ".ads"

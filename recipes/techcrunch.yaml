@@ -1,0 +1,23 @@
+id: "techcrunch"
+name: "TechCrunch"
+base_url: "https://techcrunch.com"
+category: "technology"
+country: "GLOBAL"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://techcrunch.com/feed/"
+url_patterns:
+  - "https://techcrunch.com/[0-9]{4}/[0-9]{2}/[0-9]{2}/.*"
+selectors:
+  title: "h1.article__title, h1"
+  content: "div.article-content, div.entry-content, article"
+  author: "div.article__byline a, span.byline"
+  published_at: "time"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "ul.tags-list a"
+  drop_elements:
+    - "script"
+    - "style"
+    - "aside"

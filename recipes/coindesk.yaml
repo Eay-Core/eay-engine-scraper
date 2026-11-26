@@ -1,0 +1,22 @@
+id: "coindesk"
+name: "CoinDesk"
+base_url: "https://www.coindesk.com"
+category: "crypto"
+country: "GLOBAL"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://www.coindesk.com/arc/outboundfeeds/rss"
+url_patterns:
+  - "https://www.coindesk.com/.*"
+selectors:
+  title: "h1"
+  content: "div.typography__StyledTypography-sc-17iqsv2-0, div.composer-content, article"
+  author: "a.link__CustomLink-sc-12m144j-0, span.author"
+  published_at: "time"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "meta[name='news_keywords']"
+  drop_elements:
+    - "script"
+    - "style"

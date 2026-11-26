@@ -1,0 +1,25 @@
+id: "nytimes"
+name: "The New York Times"
+base_url: "https://www.nytimes.com"
+category: "global"
+country: "US"
+rate_limit_ms: 1200
+requires_js: false
+feeds:
+  - "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
+  - "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml"
+  - "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
+url_patterns:
+  - "https://www.nytimes.com/[0-9]{4}/[0-9]{2}/[0-9]{2}/.*"
+selectors:
+  title: "h1[data-testid='headline'], h1"
+  content: "section[name='articleBody'], article"
+  author: "span.byline-prefix + span, span[itemprop='author']"
+  published_at: "time"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "meta[name='news_keywords']"
+  drop_elements:
+    - "script"
+    - "style"
+    - "figure"

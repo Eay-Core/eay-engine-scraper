@@ -1,0 +1,22 @@
+id: "ars-technica"
+name: "Ars Technica"
+base_url: "https://arstechnica.com"
+category: "technology"
+country: "US"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://feeds.arstechnica.com/arstechnica/index"
+url_patterns:
+  - "https://arstechnica.com/.*"
+selectors:
+  title: "h1"
+  content: "div.article-content, article"
+  author: "a[rel='author'], span.author-name"
+  published_at: "time"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "meta[name='keywords']"
+  drop_elements:
+    - "script"
+    - "style"

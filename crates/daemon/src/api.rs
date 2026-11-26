@@ -39,7 +39,7 @@ pub fn create_router(runtime: Arc<EngineRuntime>) -> Router {
         .route("/health", get(health_handler))
         .route("/api/v1/articles", get(list_articles_handler))
         .route("/api/v1/articles/:id", get(get_article_handler))
-        .route("/api/v1/recipes", get(list_recipes_handler))
+        .route("/api/v1/recipes", get(list_recipes_handler).post(save_recipe_handler))
         .route("/api/v1/recipes/reload", post(reload_recipes_handler))
         .route("/api/v1/scrape/url", post(scrape_url_handler))
         .route("/api/v1/scrape/provider/:id", post(scrape_provider_handler))
@@ -103,6 +103,29 @@ async fn get_article_handler(
 async fn list_recipes_handler(State(runtime): State<Arc<EngineRuntime>>) -> impl IntoResponse {
     let recipes = runtime.recipes().list_recipes().await;
     Json(recipes)
+}
+
+async fn save_recipe_handler(
+    State(runtime): State<Arc<EngineRuntime>>,
+    Json(recipe): Json<eay_scraper_core::recipe::Recipe>,
+) -> impl IntoResponse {
+    let recipe_id = recipe.id.clone();
+    match runtime.recipes().add_or_update_recipe(recipe).await {
+        Ok(_) => (
+            StatusCode::CREATED,
+            Json(serde_json::json!({
+                "status": "saved",
+                "recipe_id": recipe_id,
+                "message": "Custom recipe successfully saved and registered"
+            })),
+        )
+            .into_response(),
+        Err(e) => (
+            StatusCode::INTERNAL_SERVER_ERROR,
+            Json(serde_json::json!({ "error": e.to_string() })),
+        )
+            .into_response(),
+    }
 }
 
 async fn reload_recipes_handler(State(runtime): State<Arc<EngineRuntime>>) -> impl IntoResponse {

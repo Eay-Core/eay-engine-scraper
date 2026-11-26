@@ -1,0 +1,27 @@
+id: "antara-news"
+name: "ANTARA News"
+base_url: "https://www.antaranews.com"
+category: "general"
+country: "ID"
+rate_limit_ms: 1000
+requires_js: false
+feeds:
+  - "https://www.antaranews.com/rss/terkini.xml"
+  - "https://www.antaranews.com/rss/top-news.xml"
+  - "https://www.antaranews.com/rss/ekonomi.xml"
+  - "https://www.antaranews.com/rss/tekno.xml"
+url_patterns:
+  - "https://www.antaranews.com/berita/[0-9]+/.*"
+selectors:
+  title: "h1.post-title, h1"
+  content: "div.post-content, div.text-content, article"
+  author: "p.text-muted span, span.author"
+  published_at: "span.article-date, time"
+  summary: "meta[name='description']"
+  top_image: "meta[property='og:image']"
+  tags: "ul.post-tags a, div.tags a"
+  drop_elements:
+    - "script"
+    - "style"
+    - ".baca-juga"
+    - ".ads"
